@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import './App.css'
 import Cards from './components/Cards'
 import { Button } from 'react-bootstrap'
@@ -18,6 +18,13 @@ function App() {
     setPlayers(name);
   }
 
+  useEffect(() => {
+    const storedData = localStorage.getItem('name');
+    if (storedData) {
+      newName(JSON.parse(storedData));
+    }
+  }, []);
+
   return (
     <>
       <h1 style={{ textAlign : 'center', margin: '20px 0' }}>Random Teams</h1>
@@ -29,7 +36,7 @@ function App() {
             Save
           </Button>
         </MyModal>
-        <Button onClick={reiniciarComponente} variant='success'>🗘</Button>
+        <Button onClick={reiniciarComponente} variant='success'>Random</Button>
       </div>
     </>
   )

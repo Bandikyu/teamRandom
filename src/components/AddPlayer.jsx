@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 
 const AddPlayers = ({namesState}) => {
@@ -15,6 +15,10 @@ const AddPlayers = ({namesState}) => {
       setNuevoNombre('');
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('name', JSON.stringify(name));
+  }, [name]);
 
   const eliminarNombre = (index) => {
     const nuevoNombre = [...name];
